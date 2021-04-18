@@ -1,19 +1,19 @@
 /*
-클라이언트의 요청을 받을 웹서버를 구축한다!!(두번째 실습)
+클라이언트의 브라우저에서 전송한 데이터를 가리켜 파라미터값이라고 하고, 
+이 파라미터 값을 서버측에서 받아서 처리해본다!!
 */
-var http = require("http"); //http 모듈(웹서버 모듈)을 가져오기
+var http=require("http");
+var querystring=require("querystring"); //파라미터 처리 모듈 
 
-var server = http.createServer(); //서버 객체 생성
-
-//클라이언트의 접속을 감지해보자!!
-server.on("connection", function(){
-    console.log("클라인트의 접속 감지!!");
+var server =http.createServer(function(request, response){
+    if(request.url=="/param"){
+        //클라이언가 전송한 파라미터 받기 
+        
+        //get방식으로 전송된 데이터 받아보기
+        console.log("클라이언트의 요청 발견", querystring);
+    }
 });
 
-//클라이언트 요청에 대해, 응답을 해보자!!!
-//만일 응답처리를 안할경우 클라이언트는 무한대기에 빠진다..
-
-
-server.listen(9999, function(){
-    console.log("Second Server is running at 9999 port...");
-});//클라이언트의 접속을 기다림..
+server.listen(7777, function(){
+    console.log("Server is running at 7777");
+});
